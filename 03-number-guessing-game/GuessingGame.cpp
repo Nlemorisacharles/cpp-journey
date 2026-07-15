@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 
 int main ()
 {
@@ -17,7 +19,8 @@ int main ()
 //ELSE "Congratulations!"
 //After the player guesses correctly, print something like: you guessed the number in X tries! (where X is the number of guesses the player made).
 
-    int secretNumber = 7;
+    srand(time(0));
+    int secretNumber = (rand() % 10);
     int userGuess;
     int guessCount = 0;
 
@@ -27,25 +30,28 @@ int main ()
 
     while (userGuess != secretNumber) 
     {
-        if (userGuess < 0 || userGuess > 9) {
+       if (userGuess < 0 || userGuess > 9)
+        {
             std::cout << "Please enter a number between 0 and 9." << std::endl;
         }
-        else if (userGuess < secretNumber) {
-            std::cout << "Your guess is too low. Try again." << std::endl;
+        else if (userGuess < secretNumber)
+        {
+            std::cout << "Guess higher!" << std::endl;
         }
-        else if (userGuess > secretNumber) {
-            std::cout << "Your guess is too high. Try again." << std::endl;
+        else
+        {
+            std::cout << "Guess lower!" << std::endl;
         }
-
-         else {
-        std::cout << "Congratulations! You guessed the number." << std::endl;
-    }
 
         std::cout << "Guess the number (0-9): ";
         std::cin >> userGuess;
-
-    
     }
+
+    guessCount++;
+
+    std::cout << "🎉 Congratulations!" << std::endl;
+    std::cout << "You guessed the number " << secretNumber
+              << " in " << guessCount << " tries!" << std::endl;
        
 
 
